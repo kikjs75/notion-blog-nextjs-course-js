@@ -64,7 +64,8 @@ export const getPublishedPosts = async (): Promise<Post[]> => {
             ? ((properties.Author.people[0] as PersonUserObjectResponse)?.name ?? '')
             : '',
         date: properties.Date.type === 'date' ? (properties.Date.date?.start ?? '') : '',
-        modifiedDate: page.last_edited_time,
+        // 한글 주석: Post 타입 필수 필드명이 modifiedData라서 정확히 맞춰줍니다.
+        modifiedData: page.last_edited_time,
         slug:
           properties.Slug.type === 'rich_text'
             ? (properties.Slug.rich_text[0]?.plain_text ?? page.id)
