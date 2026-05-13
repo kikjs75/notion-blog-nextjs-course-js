@@ -1,0 +1,1016 @@
+[
+  {
+    "object": "page",
+    "id": "577de32c-ed40-8354-ad0c-81c2fbd1e449",
+    "created_time": "2026-05-13T07:16:00.000Z",
+    "last_edited_time": "2026-05-13T07:16:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "cover": {
+      "type": "external",
+      "external": {
+        "url": "https://images.unsplash.com/photo-1476820865390-c52aeebb9891?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"
+      }
+    },
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "20dde32c-ed40-8223-ae9b-81fb034921bc"
+    },
+    "in_trash": false,
+    "is_archived": false,
+    "is_locked": false,
+    "properties": {
+      "Description": {
+        "id": "%3BUrC",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML).",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML).",
+            "href": null
+          }
+        ]
+      },
+      "Slug": {
+        "id": "Kl%5Dm",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "css",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "css",
+            "href": null
+          }
+        ]
+      },
+      "Tags": {
+        "id": "T%5Cnr",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "d12cc1cb-2032-4310-b702-ff1e5b3f4321",
+            "name": "CSS",
+            "color": "blue"
+          }
+        ]
+      },
+      "Status": {
+        "id": "hy%3Ad",
+        "type": "select",
+        "select": {
+          "id": "7d321161-4960-4e36-8dd4-7191c43c9d3c",
+          "name": "Published",
+          "color": "red"
+        }
+      },
+      "Author": {
+        "id": "jrg_",
+        "type": "people",
+        "people": [
+          {
+            "object": "user",
+            "id": "4bfe3f3d-574d-4bac-ac34-904866b85fa4"
+          }
+        ]
+      },
+      "Modified Date": {
+        "id": "tBzY",
+        "type": "date",
+        "date": null
+      },
+      "Date": {
+        "id": "wOPZ",
+        "type": "date",
+        "date": {
+          "start": "2025-02-07",
+          "end": null,
+          "time_zone": null
+        }
+      },
+      "Title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Cascading Style Sheets",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Cascading Style Sheets",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/Cascading-Style-Sheets-577de32ced408354ad0c81c2fbd1e449",
+    "public_url": "https://muddy-softball-a20.notion.site/Cascading-Style-Sheets-577de32ced408354ad0c81c2fbd1e449",
+    "archived": false
+  },
+  {
+    "object": "page",
+    "id": "d6ade32c-ed40-823a-8aaf-8100f064bae7",
+    "created_time": "2026-05-13T07:16:00.000Z",
+    "last_edited_time": "2026-05-13T07:16:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "cover": {
+      "type": "external",
+      "external": {
+        "url": "https://images.unsplash.com/photo-1520962880247-cfaf541c8724?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"
+      }
+    },
+    "icon": {
+      "type": "emoji",
+      "emoji": "🧘‍♀️"
+    },
+    "parent": {
+      "type": "database_id",
+      "database_id": "20dde32c-ed40-8223-ae9b-81fb034921bc"
+    },
+    "in_trash": false,
+    "is_archived": false,
+    "is_locked": false,
+    "properties": {
+      "Description": {
+        "id": "%3BUrC",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "현재 순간에 충실하고 마음챙김을 실천하는 기술을 소개하는 글입니다.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "현재 순간에 충실하고 마음챙김을 실천하는 기술을 소개하는 글입니다.",
+            "href": null
+          }
+        ]
+      },
+      "Slug": {
+        "id": "Kl%5Dm",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "git",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "git",
+            "href": null
+          }
+        ]
+      },
+      "Tags": {
+        "id": "T%5Cnr",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "5dd4e138-bb84-4ca1-8fa4-a41b7bb6ea98",
+            "name": "Git",
+            "color": "orange"
+          },
+          {
+            "id": "8830ac58-581e-451f-81f8-c06d18535e81",
+            "name": "Github",
+            "color": "purple"
+          }
+        ]
+      },
+      "Status": {
+        "id": "hy%3Ad",
+        "type": "select",
+        "select": {
+          "id": "7d321161-4960-4e36-8dd4-7191c43c9d3c",
+          "name": "Published",
+          "color": "red"
+        }
+      },
+      "Author": {
+        "id": "jrg_",
+        "type": "people",
+        "people": [
+          {
+            "object": "user",
+            "id": "4bfe3f3d-574d-4bac-ac34-904866b85fa4"
+          }
+        ]
+      },
+      "Modified Date": {
+        "id": "tBzY",
+        "type": "date",
+        "date": null
+      },
+      "Date": {
+        "id": "wOPZ",
+        "type": "date",
+        "date": {
+          "start": "2023-12-07",
+          "end": null,
+          "time_zone": null
+        }
+      },
+      "Title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Git 시작하기 - 버전 관리 개요",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Git 시작하기 - 버전 관리 개요",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/Git-d6ade32ced40823a8aaf8100f064bae7",
+    "public_url": "https://muddy-softball-a20.notion.site/Git-d6ade32ced40823a8aaf8100f064bae7",
+    "archived": false
+  },
+  {
+    "object": "page",
+    "id": "e6bde32c-ed40-82ed-96ff-0199e52a7d4f",
+    "created_time": "2026-05-13T07:16:00.000Z",
+    "last_edited_time": "2026-05-13T07:16:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "cover": {
+      "type": "external",
+      "external": {
+        "url": "https://images.unsplash.com/photo-1520085601670-ee14aa5fa3e8?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"
+      }
+    },
+    "icon": {
+      "type": "emoji",
+      "emoji": "📚"
+    },
+    "parent": {
+      "type": "database_id",
+      "database_id": "20dde32c-ed40-8223-ae9b-81fb034921bc"
+    },
+    "in_trash": false,
+    "is_archived": false,
+    "is_locked": false,
+    "properties": {
+      "Description": {
+        "id": "%3BUrC",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "제가 가장 좋아하는 책 10권과 그 책들이 제 인생에 어떤 영향을 끼쳤는지 소개하는 글입니다. ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "제가 가장 좋아하는 책 10권과 그 책들이 제 인생에 어떤 영향을 끼쳤는지 소개하는 글입니다. ",
+            "href": null
+          }
+        ]
+      },
+      "Slug": {
+        "id": "Kl%5Dm",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "layouts-pages",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "layouts-pages",
+            "href": null
+          }
+        ]
+      },
+      "Tags": {
+        "id": "T%5Cnr",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "f3f94c7b-a9ba-48f5-95be-7736837234c6",
+            "name": "React",
+            "color": "default"
+          },
+          {
+            "id": "ec4b86fb-a00b-43f1-a591-f353ce51b255",
+            "name": "Next.js",
+            "color": "pink"
+          }
+        ]
+      },
+      "Status": {
+        "id": "hy%3Ad",
+        "type": "select",
+        "select": {
+          "id": "7d321161-4960-4e36-8dd4-7191c43c9d3c",
+          "name": "Published",
+          "color": "red"
+        }
+      },
+      "Author": {
+        "id": "jrg_",
+        "type": "people",
+        "people": [
+          {
+            "object": "user",
+            "id": "4bfe3f3d-574d-4bac-ac34-904866b85fa4"
+          }
+        ]
+      },
+      "Modified Date": {
+        "id": "tBzY",
+        "type": "date",
+        "date": null
+      },
+      "Date": {
+        "id": "wOPZ",
+        "type": "date",
+        "date": {
+          "start": "2023-10-11",
+          "end": null,
+          "time_zone": null
+        }
+      },
+      "Title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "레이아웃과 페이지 생성 방법",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "레이아웃과 페이지 생성 방법",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/e6bde32ced4082ed96ff0199e52a7d4f",
+    "public_url": "https://muddy-softball-a20.notion.site/e6bde32ced4082ed96ff0199e52a7d4f",
+    "archived": false
+  },
+  {
+    "object": "page",
+    "id": "abade32c-ed40-82e0-ade2-816ff49b426e",
+    "created_time": "2026-05-13T07:16:00.000Z",
+    "last_edited_time": "2026-05-13T07:16:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "cover": {
+      "type": "external",
+      "external": {
+        "url": "https://images.unsplash.com/photo-1616278842935-f36557148755?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"
+      }
+    },
+    "icon": {
+      "type": "emoji",
+      "emoji": "🍱"
+    },
+    "parent": {
+      "type": "database_id",
+      "database_id": "20dde32c-ed40-8223-ae9b-81fb034921bc"
+    },
+    "in_trash": false,
+    "is_archived": false,
+    "is_locked": false,
+    "properties": {
+      "Description": {
+        "id": "%3BUrC",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "이 페이지의 링크들은 다양한 튜토리얼과 학습 자료로 연결됩니다. 웹 개발 초보자부터 중급자, 전문가까지 모두에게 도움이 되는 자료를 찾을 수 있습니다.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "이 페이지의 링크들은 다양한 튜토리얼과 학습 자료로 연결됩니다. 웹 개발 초보자부터 중급자, 전문가까지 모두에게 도움이 되는 자료를 찾을 수 있습니다.",
+            "href": null
+          }
+        ]
+      },
+      "Slug": {
+        "id": "Kl%5Dm",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "web-beginner",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "web-beginner",
+            "href": null
+          }
+        ]
+      },
+      "Tags": {
+        "id": "T%5Cnr",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "df6af6b0-fc38-47a1-a236-c12442030343",
+            "name": "JavaScript",
+            "color": "brown"
+          },
+          {
+            "id": "3a456ebc-07e7-4e87-8bf5-76248bc18292",
+            "name": "Web",
+            "color": "gray"
+          }
+        ]
+      },
+      "Status": {
+        "id": "hy%3Ad",
+        "type": "select",
+        "select": {
+          "id": "7d321161-4960-4e36-8dd4-7191c43c9d3c",
+          "name": "Published",
+          "color": "red"
+        }
+      },
+      "Author": {
+        "id": "jrg_",
+        "type": "people",
+        "people": [
+          {
+            "object": "user",
+            "id": "4bfe3f3d-574d-4bac-ac34-904866b85fa4"
+          }
+        ]
+      },
+      "Modified Date": {
+        "id": "tBzY",
+        "type": "date",
+        "date": null
+      },
+      "Date": {
+        "id": "wOPZ",
+        "type": "date",
+        "date": {
+          "start": "2023-08-22",
+          "end": null,
+          "time_zone": null
+        }
+      },
+      "Title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "웹 개발 학습 가이드",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "웹 개발 학습 가이드",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/abade32ced4082e0ade2816ff49b426e",
+    "public_url": "https://muddy-softball-a20.notion.site/abade32ced4082e0ade2816ff49b426e",
+    "archived": false
+  },
+  {
+    "object": "page",
+    "id": "472de32c-ed40-8238-8a50-012c5eba7576",
+    "created_time": "2026-05-13T07:16:00.000Z",
+    "last_edited_time": "2026-05-13T07:16:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "cover": {
+      "type": "external",
+      "external": {
+        "url": "https://images.unsplash.com/photo-1555081944-c0c2f00d06e8?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"
+      }
+    },
+    "icon": {
+      "type": "emoji",
+      "emoji": "💭"
+    },
+    "parent": {
+      "type": "database_id",
+      "database_id": "20dde32c-ed40-8223-ae9b-81fb034921bc"
+    },
+    "in_trash": false,
+    "is_archived": false,
+    "is_locked": false,
+    "properties": {
+      "Description": {
+        "id": "%3BUrC",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "HTML(Hypertext Markup Language)은 웹 페이지의 구조를 정의하는 마크업 언어입니다. 웹 페이지의 콘텐츠를 여러 개의 문단, 목록, 이미지, 데이터 테이블 등으로 구조화하는 데 사용됩니다.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "HTML(Hypertext Markup Language)은 웹 페이지의 구조를 정의하는 마크업 언어입니다. 웹 페이지의 콘텐츠를 여러 개의 문단, 목록, 이미지, 데이터 테이블 등으로 구조화하는 데 사용됩니다.",
+            "href": null
+          }
+        ]
+      },
+      "Slug": {
+        "id": "Kl%5Dm",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "html-nextjs",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "html-nextjs",
+            "href": null
+          }
+        ]
+      },
+      "Tags": {
+        "id": "T%5Cnr",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "d12cc1cb-2032-4310-b702-ff1e5b3f4321",
+            "name": "CSS",
+            "color": "blue"
+          },
+          {
+            "id": "ec4b86fb-a00b-43f1-a591-f353ce51b255",
+            "name": "Next.js",
+            "color": "pink"
+          },
+          {
+            "id": "86fa7417-e39f-4708-bb1d-26409a43cff1",
+            "name": "HTML",
+            "color": "red"
+          }
+        ]
+      },
+      "Status": {
+        "id": "hy%3Ad",
+        "type": "select",
+        "select": {
+          "id": "7d321161-4960-4e36-8dd4-7191c43c9d3c",
+          "name": "Published",
+          "color": "red"
+        }
+      },
+      "Author": {
+        "id": "jrg_",
+        "type": "people",
+        "people": []
+      },
+      "Modified Date": {
+        "id": "tBzY",
+        "type": "date",
+        "date": null
+      },
+      "Date": {
+        "id": "wOPZ",
+        "type": "date",
+        "date": {
+          "start": "2023-06-09",
+          "end": null,
+          "time_zone": null
+        }
+      },
+      "Title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "HTML과 Next.js 레이아웃의 이해",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "HTML과 Next.js 레이아웃의 이해",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/HTML-Next-js-472de32ced4082388a50012c5eba7576",
+    "public_url": "https://muddy-softball-a20.notion.site/HTML-Next-js-472de32ced4082388a50012c5eba7576",
+    "archived": false
+  },
+  {
+    "object": "page",
+    "id": "35fde32c-ed40-80b0-a095-fbc7ce2904d0",
+    "created_time": "2026-05-13T07:23:00.000Z",
+    "last_edited_time": "2026-05-13T07:23:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "20dde32c-ed40-8223-ae9b-81fb034921bc"
+    },
+    "in_trash": false,
+    "is_archived": false,
+    "is_locked": false,
+    "properties": {
+      "Description": {
+        "id": "%3BUrC",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "상세 설명",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "상세 설명",
+            "href": null
+          }
+        ]
+      },
+      "Slug": {
+        "id": "Kl%5Dm",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "Tags": {
+        "id": "T%5Cnr",
+        "type": "multi_select",
+        "multi_select": []
+      },
+      "Status": {
+        "id": "hy%3Ad",
+        "type": "select",
+        "select": {
+          "id": "7d321161-4960-4e36-8dd4-7191c43c9d3c",
+          "name": "Published",
+          "color": "red"
+        }
+      },
+      "Author": {
+        "id": "jrg_",
+        "type": "people",
+        "people": []
+      },
+      "Modified Date": {
+        "id": "tBzY",
+        "type": "date",
+        "date": null
+      },
+      "Date": {
+        "id": "wOPZ",
+        "type": "date",
+        "date": null
+      },
+      "Title": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "진수의 템플릿",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "진수의 템플릿",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/35fde32ced4080b0a095fbc7ce2904d0",
+    "public_url": "https://muddy-softball-a20.notion.site/35fde32ced4080b0a095fbc7ce2904d0",
+    "archived": false
+  },
+  {
+    "object": "page",
+    "id": "35fde32c-ed40-804a-a578-e64d5ffa188f",
+    "created_time": "2026-05-13T07:23:00.000Z",
+    "last_edited_time": "2026-05-13T07:23:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "20dde32c-ed40-8223-ae9b-81fb034921bc"
+    },
+    "in_trash": false,
+    "is_archived": false,
+    "is_locked": false,
+    "properties": {
+      "Description": {
+        "id": "%3BUrC",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "Slug": {
+        "id": "Kl%5Dm",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "Tags": {
+        "id": "T%5Cnr",
+        "type": "multi_select",
+        "multi_select": []
+      },
+      "Status": {
+        "id": "hy%3Ad",
+        "type": "select",
+        "select": {
+          "id": "7d321161-4960-4e36-8dd4-7191c43c9d3c",
+          "name": "Published",
+          "color": "red"
+        }
+      },
+      "Author": {
+        "id": "jrg_",
+        "type": "people",
+        "people": []
+      },
+      "Modified Date": {
+        "id": "tBzY",
+        "type": "date",
+        "date": null
+      },
+      "Date": {
+        "id": "wOPZ",
+        "type": "date",
+        "date": null
+      },
+      "Title": {
+        "id": "title",
+        "type": "title",
+        "title": []
+      }
+    },
+    "url": "https://www.notion.so/35fde32ced40804aa578e64d5ffa188f",
+    "public_url": "https://muddy-softball-a20.notion.site/35fde32ced40804aa578e64d5ffa188f",
+    "archived": false
+  },
+  {
+    "object": "page",
+    "id": "35fde32c-ed40-80bd-8d58-c033011920b9",
+    "created_time": "2026-05-13T07:21:00.000Z",
+    "last_edited_time": "2026-05-13T07:21:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "4b6e5403-c1fc-4614-9972-87e3c2ba6e2a"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "20dde32c-ed40-8223-ae9b-81fb034921bc"
+    },
+    "in_trash": false,
+    "is_archived": false,
+    "is_locked": false,
+    "properties": {
+      "Description": {
+        "id": "%3BUrC",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "Slug": {
+        "id": "Kl%5Dm",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "Tags": {
+        "id": "T%5Cnr",
+        "type": "multi_select",
+        "multi_select": []
+      },
+      "Status": {
+        "id": "hy%3Ad",
+        "type": "select",
+        "select": {
+          "id": "7d321161-4960-4e36-8dd4-7191c43c9d3c",
+          "name": "Published",
+          "color": "red"
+        }
+      },
+      "Author": {
+        "id": "jrg_",
+        "type": "people",
+        "people": []
+      },
+      "Modified Date": {
+        "id": "tBzY",
+        "type": "date",
+        "date": null
+      },
+      "Date": {
+        "id": "wOPZ",
+        "type": "date",
+        "date": null
+      },
+      "Title": {
+        "id": "title",
+        "type": "title",
+        "title": []
+      }
+    },
+    "url": "https://www.notion.so/35fde32ced4080bd8d58c033011920b9",
+    "public_url": "https://muddy-softball-a20.notion.site/35fde32ced4080bd8d58c033011920b9",
+    "archived": false
+  }
+]
