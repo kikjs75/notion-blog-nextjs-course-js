@@ -4,7 +4,7 @@ export default function Header() {
   console.log('Header');
   return (
     <header className="bg-background sticky top-0 z-50 border-b">
-      <div className="containerflex h-14 items-center px-4">
+      <div className="containerflex h-[var(--header-height)] items-center px-4">
         <Link href="/" className="text-xl font-semibold">
           <span className="font-bold">짐코딩 블로그</span>
         </Link>
