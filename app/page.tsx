@@ -32,6 +32,7 @@ export default async function Home({ searchParams }: HomeProps) {
         {/* 좌측 사이드바 */}
         <aside>
           {/* <TagSection tags={tags} selectedTag={selectedTag} /> */}
+
           <Suspense fallback={<TagSectionSkeleton />}>
             <TagSectionClient tags={tags} selectedTag={selectedTag} />
           </Suspense>
