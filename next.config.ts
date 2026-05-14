@@ -2,6 +2,9 @@ import type { NextConfig } from 'next';
 import createMDX from '@next/mdx';
 // import remarkGfm from 'remark-gfm';
 
+console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
+console.log('process.env.ENV_NAME: ', process.env.ENV_NAME);
+
 const nextConfig: NextConfig = {
   /* config options here */
   // 마크다운과 MDX 파일을 포함하도록 `pageExtensions` 구성
