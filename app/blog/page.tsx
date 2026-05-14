@@ -1,11 +1,9 @@
 import TagSection from '@/app/_components/TagSection';
 import ProfileSection from '@/app/_components/ProfileSection';
 import ContactSection from '@/app/_components/ContactSection';
-import { getTags } from '@/lib/notion';
+import { getTags, getPublishedPosts } from '@/lib/notion';
 import HeaderSection from '@/app/_components/HeaderSection';
-// import PostList from '@/components/features/blog/PostList';
-import PostListSuspense from '@/components/features/blog/PostListSuspense';
-import { Suspense } from 'react';
+import PostList from '@/components/features/blog/PostList';
 
 interface BlogProps {
   searchParams: Promise<{ tag?: string; sort?: string }>;
@@ -16,11 +14,10 @@ export default async function Blog({ searchParams }: BlogProps) {
   const selectedTag = tag || '전체';
   const selectedSort = sort === 'oldest' ? 'oldest' : 'latest';
 
-  const tags = await getTags();
-  // const [posts, tags] = await Promise.all([
-  //   getPublishedPosts(selectedTag, selectedSort),
-  //   getTags(),
-  // ]);
+  const [posts, tags] = await Promise.all([
+    getPublishedPosts(selectedTag, selectedSort),
+    getTags(),
+  ]);
 
   return (
     <div className="container py-8">
@@ -34,9 +31,7 @@ export default async function Blog({ searchParams }: BlogProps) {
           <HeaderSection selectedTag={selectedTag} />
 
           {/* 블로그 카드 그리드 */}
-          <Suspense fallback={<div>Loading...</div>}>
-            <PostListSuspense selectedTag={selectedTag} selectedSort={selectedSort} />
-          </Suspense>
+          <PostList posts={posts} />
         </div>
         {/* 우측 사이드바 */}
         <aside className="flex flex-col gap-6">
