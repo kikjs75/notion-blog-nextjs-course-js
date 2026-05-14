@@ -15,16 +15,10 @@ interface HomeProps {
 }
 
 export default async function Home({ searchParams }: HomeProps) {
-  const { tag, sort } = await searchParams;
+  const { tag } = await searchParams;
   const selectedTag = tag || '전체';
-  const selectedSort = sort === 'oldest' ? 'oldest' : 'latest';
 
   const tags = getTags();
-
-  // const [posts, tags] = await Promise.all([
-  //   getPublishedPosts(selectedTag, selectedSort),
-  //   getTags(),
-  // ]);
 
   return (
     <div className="container py-8">
@@ -44,7 +38,7 @@ export default async function Home({ searchParams }: HomeProps) {
           {/* 블로그 카드 그리드 */}
           {/* <PostList posts={posts} /> */}
           <Suspense fallback={<PostListSkeleton />}>
-            <PostListSuspense selectedTag={selectedTag} selectedSort={selectedSort} />
+            <PostListSuspense />
           </Suspense>
         </div>
         {/* 우측 사이드바 */}

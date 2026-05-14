@@ -17,6 +17,7 @@
     "@next/mdx": "^15.5.18",
     "@notionhq/client": "^2.2.16",
     "@stefanprobst/rehype-extract-toc": "^3.0.0",
+    "@tanstack/react-query": "^5.100.10",
     "@types/mdx": "^2.0.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
