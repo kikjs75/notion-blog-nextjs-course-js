@@ -19,8 +19,6 @@ export default async function Home({ searchParams }: HomeProps) {
     getTags(),
   ]);
 
-  console.log('posts: ', posts);
-
   return (
     <div className="container py-8">
       <div className="grid grid-cols-[200px_1fr_220px] gap-6">
@@ -40,9 +38,9 @@ export default async function Home({ searchParams }: HomeProps) {
 
           {/* 블로그 카드 그리드 */}
           <div className="grid gap-4">
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <Link href={`/blog/${post.slug}`} key={post.id}>
-                <PostCard post={post} />
+                <PostCard post={post} priority={index === 0} />
               </Link>
             ))}
           </div>

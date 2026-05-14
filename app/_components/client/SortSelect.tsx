@@ -10,10 +10,6 @@ import {
 } from '@/components/ui/select';
 
 export default function SortSelect() {
-  console.log('SortSelect!!!');
-  console.log('NEXT_PUBLIC_CLIENT: ', process.env.NEXT_PUBLIC_CLIENT);
-  console.log('CLIENT: ', process.env.CLIENT);
-
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentSort = searchParams.get('sort') || 'latest';

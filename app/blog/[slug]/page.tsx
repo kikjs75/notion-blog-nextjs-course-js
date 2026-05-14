@@ -55,8 +55,6 @@ export default async function BlogPost({ params }: BlogPostProps) {
     rehypePlugins: [withSlugs, withToc, withTocExport],
   });
 
-  console.log(data);
-
   return (
     <div className="container py-12">
       <div className="grid grid-cols-[240px_1fr_240px] gap-8">
