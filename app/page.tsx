@@ -4,7 +4,7 @@ import ProfileSection from '@/app/_components/ProfileSection';
 import ContactSection from '@/app/_components/ContactSection';
 import Link from 'next/link';
 import { getPublishedPosts, getTags } from '@/lib/notion';
-import SortSelect from '@/app/_components/SortSelect';
+import SortSelect from '@/app/_components/client/SortSelect';
 
 interface HomeProps {
   searchParams: Promise<{ tag?: string; sort?: string }>;
@@ -14,7 +14,12 @@ export default async function Home({ searchParams }: HomeProps) {
   const { tag, sort } = await searchParams;
   const selectedTag = tag || '전체';
   const selectedSort = sort === 'oldest' ? 'oldest' : 'latest';
-  const [posts, tags] = await Promise.all([getPublishedPosts(selectedTag, selectedSort), getTags()]);
+  const [posts, tags] = await Promise.all([
+    getPublishedPosts(selectedTag, selectedSort),
+    getTags(),
+  ]);
+
+  console.log('posts: ', posts);
 
   return (
     <div className="container py-8">
