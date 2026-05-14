@@ -124,6 +124,8 @@ export const getPostBySlug = async (
   };
 };
 
+console.log('process.env.NOTION_DATABASE_ID: ', process.env.NOTION_DATABASE_ID);
+
 export const getPublishedPosts = async (
   tag?: string,
   sort: 'latest' | 'oldest' = 'latest'
