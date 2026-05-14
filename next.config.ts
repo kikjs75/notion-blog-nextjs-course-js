@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next';
 import createMDX from '@next/mdx';
+// import remarkGfm from 'remark-gfm';
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -27,6 +28,12 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   // 필요한 마크다운 플러그인을 여기에 추가하세요
+  options: {
+    // 1) turbo pack 기준 설정.
+    remarkPlugins: [['remark-gfm']],
+    // 2) web pack 기준 설정.
+    // remarkPlugins: [remarkGfm],
+  },
 });
 
 // MDX 설정을 Next.js 설정과 병합
