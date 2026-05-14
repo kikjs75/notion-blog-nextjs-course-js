@@ -162,8 +162,6 @@ export const getPublishedPosts = async (
     ],
   });
 
-  console.log(response.results);
-
   return response.results
     .filter((page): page is PageObjectResponse => 'properties' in page)
     .map(getPostMetadata);

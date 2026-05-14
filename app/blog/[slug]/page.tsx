@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { CalendarDays, Clock, TableOfContentsIcon, User } from 'lucide-react';
+import { CalendarDays, User } from 'lucide-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { getPostBySlug } from '@/lib/notion';
@@ -10,7 +10,6 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import rehypeSanitize from 'rehype-sanitize';
 import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeSlug from 'rehype-slug';
 import { compile } from '@mdx-js/mdx';
 import withSlugs from 'rehype-slug';
 import withToc from '@stefanprobst/rehype-extract-toc';
@@ -22,8 +21,6 @@ interface TocEntry {
   id?: string;
   children?: Array<TocEntry>;
 }
-
-type Toc = Array<TocEntry>;
 
 function TableOfContentsLink({ item }: { item: TocEntry }) {
   return (
@@ -55,11 +52,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const { markdown, post } = await getPostBySlug(slug);
 
   const { data } = await compile(markdown, {
-    rehypePlugins: [
-      withSlugs,
-      withToc,
-      withTocExport,
-    ],
+    rehypePlugins: [withSlugs, withToc, withTocExport],
   });
 
   console.log(data);
@@ -114,7 +107,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
               options={{
                 mdxOptions: {
                   remarkPlugins: [remarkGfm],
-                  rehypePlugins: [rehypeSanitize, rehypePrettyCode, rehypeSlug],
+                  rehypePlugins: [withSlugs, rehypeSanitize, rehypePrettyCode],
                 },
               }}
             />
