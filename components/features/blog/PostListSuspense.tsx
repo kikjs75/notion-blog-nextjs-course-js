@@ -43,18 +43,17 @@ export default function PostList({ postsPromise }: PostListProps) {
     },
   });
 
-  const handleLoadMore = () => {
-    if (hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
-    }
-  };
-
   const { ref, inView } = useInView({
     threshold: 0.5,
   });
 
   useEffect(() => {
-    if (hasNextPage && !isFetchingNextPage && inView) {
+    /**
+     * inView : 감지 요소가 보이고
+     * hasNextPage : 더 불러올 페이지가 있고
+     * !isFetchingNextPage : 현재 로딩 중이 아닐 때
+     */
+    if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
   }, [inView, fetchNextPage, hasNextPage, isFetchingNextPage]);
