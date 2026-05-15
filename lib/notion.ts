@@ -5,6 +5,7 @@ import type {
   PersonUserObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints';
 import { NotionToMarkdown } from 'notion-to-md';
+import { unstable_cache } from 'next/cache';
 
 export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -137,63 +138,64 @@ export interface GetPublishedPostsResponse {
   nextCursor: string | null;
 }
 
-export const getPublishedPosts = async ({
-  tag,
-  sort,
-  pageSize = 2,
-  startCursor,
-}: GetPublishedPostsParams = {}): Promise<GetPublishedPostsResponse> => {
-  const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID!,
-    filter: {
-      property: 'Status',
-      select: {
-        equals: 'Published',
-      },
-      and: [
-        {
-          property: 'Status',
-          select: {
-            equals: 'Published',
-          },
+export const getPublishedPosts = unstable_cache(
+  async ({
+    tag,
+    sort,
+    pageSize = 2,
+    startCursor,
+  }: GetPublishedPostsParams = {}): Promise<GetPublishedPostsResponse> => {
+    console.log('getPublishedPosts: ', tag, sort, pageSize, startCursor);
+    const response = await notion.databases.query({
+      database_id: process.env.NOTION_DATABASE_ID!,
+      filter: {
+        property: 'Status',
+        select: {
+          equals: 'Published',
         },
-        ...(tag && tag !== '전체'
-          ? [
-              {
-                property: 'Tags',
-                multi_select: {
-                  contains: tag,
+        and: [
+          {
+            property: 'Status',
+            select: {
+              equals: 'Published',
+            },
+          },
+          ...(tag && tag !== '전체'
+            ? [
+                {
+                  property: 'Tags',
+                  multi_select: {
+                    contains: tag,
+                  },
                 },
-              },
-            ]
-          : []),
-      ],
-    },
-    sorts: [
-      {
-        property: 'Date',
-        direction: sort === 'oldest' ? 'ascending' : 'descending',
+              ]
+            : []),
+        ],
       },
-    ],
-    page_size: pageSize,
-    start_cursor: startCursor,
-  });
+      sorts: [
+        {
+          property: 'Date',
+          direction: sort === 'oldest' ? 'ascending' : 'descending',
+        },
+      ],
+      page_size: pageSize,
+      start_cursor: startCursor,
+    });
 
-  console.log('response(getPublishedPosts): ', response);
+    const posts = response.results
+      .filter((page): page is PageObjectResponse => 'properties' in page)
+      .map(getPostMetadata);
+    // .map((page) => {
+    //   return getPostMetadata(page);
+    // });
 
-  const posts = response.results
-    .filter((page): page is PageObjectResponse => 'properties' in page)
-    .map(getPostMetadata);
-  // .map((page) => {
-  //   return getPostMetadata(page);
-  // });
-
-  return {
-    posts,
-    hasMore: response.has_more,
-    nextCursor: response.next_cursor,
-  };
-};
+    return {
+      posts,
+      hasMore: response.has_more,
+      nextCursor: response.next_cursor,
+    };
+  }
+);
 
 export interface CreatePostParams {
   title: string;
