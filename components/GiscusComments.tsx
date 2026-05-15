@@ -1,6 +1,27 @@
 'use client';
 
 import Giscus from '@giscus/react';
+import { useTheme } from 'next-themes';
+
+export default function GiscusComments() {
+  const { theme } = useTheme();
+  return (
+    <Giscus
+      repo="kikjs75/notion-blog-nextjs-giscus"
+      repoId="R_kgDOSeOStQ"
+      category="Announcements"
+      categoryId="DIC_kwDOSeOStc4C9G54"
+      mapping="pathname"
+      strict="0"
+      reactionsEnabled="1"
+      emitMetadata="0"
+      inputPosition="top"
+      theme={theme === 'dark' ? 'dark' : 'light'}
+      lang="ko"
+      loading="lazy"
+    />
+  );
+}
 
 /*
 <script src="https://giscus.app/client.js"
@@ -19,22 +40,3 @@ import Giscus from '@giscus/react';
         async>
 </script>
 */
-
-export default function GiscusComments() {
-  return (
-    <Giscus
-      repo="kikjs75/notion-blog-nextjs-giscus"
-      repoId="R_kgDOSeOStQ"
-      category="Announcements"
-      categoryId="DIC_kwDOSeOStc4C9G54"
-      mapping="pathname"
-      strict="0"
-      reactionsEnabled="1"
-      emitMetadata="0"
-      inputPosition="top"
-      theme="preferred_color_scheme"
-      lang="ko"
-      loading="lazy"
-    />
-  );
-}
