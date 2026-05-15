@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { CalendarDays, User } from 'lucide-react';
-import { getPostBySlug } from '@/lib/notion';
+import { getPostBySlug, getAllPublishedPosts } from '@/lib/notion';
 import { formatDate } from '@/lib/date';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
@@ -14,6 +14,16 @@ import withToc from '@stefanprobst/rehype-extract-toc';
 import withTocExport from '@stefanprobst/rehype-extract-toc/mdx';
 import GiscusComments from '@/components/GiscusComments';
 import { notFound } from 'next/navigation';
+
+export const generateStaticParams = async () => {
+  const posts = await getAllPublishedPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+};
+
+/** Notion 반영 지연: lib/notion.ts의 BLOG_REVALIDATE_SECONDS와 동일한 값으로 유지하세요. */
+export const revalidate = 60;
 
 interface TocEntry {
   value: string;

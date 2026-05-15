@@ -7,6 +7,12 @@ import type {
 import { NotionToMarkdown } from 'notion-to-md';
 import { unstable_cache } from 'next/cache';
 
+/** 목록·태그용 데이터 캐시 무효화 시 revalidateTag에 넘기는 이름 */
+export const BLOG_POSTS_CACHE_TAG = 'posts';
+
+/** Notion 반영(삭제·추가 등) 후 ISR·Data Cache와 맞추기 위한 초 단위 (페이지 revalidate와 동일하게 유지) */
+export const BLOG_REVALIDATE_SECONDS = 60;
+
 export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
@@ -90,6 +96,26 @@ function getPostMetadata(page: PageObjectResponse): Post {
   };
 }
 
+/** Slug가 비어 목록에서 page.id를 slug로 쓸 때, Slug 필드만 조회하면 0건이 될 수 있어 UUID 형태인지 구분합니다. */
+function isLikelyNotionPageId(value: string): boolean {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+}
+
+/** retrieve 폴백 시 우리 블로그 DB 소속·게시 상태만 허용 */
+function isPublishedPostInBlogDatabase(page: PageObjectResponse): boolean {
+  const databaseId = process.env.NOTION_DATABASE_ID;
+  if (!databaseId) return false;
+
+  const parent = page.parent;
+  if (parent.type !== 'database_id') return false;
+
+  const normalized = (id: string) => id.replace(/-/g, '');
+  if (normalized(parent.database_id) !== normalized(databaseId)) return false;
+
+  const status = page.properties.Status;
+  return status?.type === 'select' && status.select?.name === 'Published';
+}
+
 export const getPostBySlug = async (
   slug: string
 ): Promise<{
@@ -116,19 +142,35 @@ export const getPostBySlug = async (
     },
   });
 
-  // if (!response.results[0]) {
-  //   return {
-  //     markdown: '',
-  //     post: null,
-  //   };
-  // }
+  let page: PageObjectResponse | undefined = response.results.find(
+    (result): result is PageObjectResponse => 'properties' in result
+  );
 
-  const mBlocks = await n2m.pageToMarkdown(response.results[0].id);
+  // Slug 필드가 비어 있으면 목록에서는 page.id가 slug로 노출되지만 위 쿼리는 매칭 실패 → ID로 직접 조회
+  if (!page && isLikelyNotionPageId(slug)) {
+    try {
+      const retrieved = await notion.pages.retrieve({ page_id: slug });
+      if ('properties' in retrieved && isPublishedPostInBlogDatabase(retrieved)) {
+        page = retrieved;
+      }
+    } catch {
+      // 페이지 없음·삭제·권한 없음 등 — 아래에서 post: null 처리
+    }
+  }
+
+  if (!page) {
+    return {
+      markdown: '',
+      post: null,
+    };
+  }
+
+  const mBlocks = await n2m.pageToMarkdown(page.id);
   const { parent } = n2m.toMarkdownString(mBlocks);
 
   return {
     markdown: parent,
-    post: getPostMetadata(response.results[0] as PageObjectResponse),
+    post: getPostMetadata(page),
   };
 };
 
@@ -145,69 +187,107 @@ export interface GetPublishedPostsResponse {
   nextCursor: string | null;
 }
 
-export const getPublishedPosts = unstable_cache(
-  async ({
-    tag,
-    sort,
-    pageSize = 2,
-    startCursor,
-  }: GetPublishedPostsParams = {}): Promise<GetPublishedPostsResponse> => {
-    console.log('getPublishedPosts: ', tag, sort, pageSize, startCursor);
-    const response = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID!,
-      filter: {
-        property: 'Status',
-        select: {
-          equals: 'Published',
-        },
-        and: [
-          {
-            property: 'Status',
-            select: {
-              equals: 'Published',
-            },
-          },
-          ...(tag && tag !== '전체'
-            ? [
-                {
-                  property: 'Tags',
-                  multi_select: {
-                    contains: tag,
-                  },
-                },
-              ]
-            : []),
-        ],
+async function fetchPublishedPostsFromNotion({
+  tag,
+  sort,
+  pageSize = 2,
+  startCursor,
+}: GetPublishedPostsParams): Promise<GetPublishedPostsResponse> {
+  console.log('getPublishedPosts: ', tag, sort, pageSize, startCursor);
+  const response = await notion.databases.query({
+    database_id: process.env.NOTION_DATABASE_ID!,
+    filter: {
+      property: 'Status',
+      select: {
+        equals: 'Published',
       },
-      sorts: [
+      and: [
         {
-          property: 'Date',
-          direction: sort === 'oldest' ? 'ascending' : 'descending',
+          property: 'Status',
+          select: {
+            equals: 'Published',
+          },
         },
+        ...(tag && tag !== '전체'
+          ? [
+              {
+                property: 'Tags',
+                multi_select: {
+                  contains: tag,
+                },
+              },
+            ]
+          : []),
       ],
-      page_size: pageSize,
-      start_cursor: startCursor,
+    },
+    sorts: [
+      {
+        property: 'Date',
+        direction: sort === 'oldest' ? 'ascending' : 'descending',
+      },
+    ],
+    page_size: pageSize,
+    start_cursor: startCursor,
+  });
+
+  const posts = response.results
+    .filter((page): page is PageObjectResponse => 'properties' in page)
+    .map(getPostMetadata);
+  console.log('posts: ', posts);
+
+  return {
+    posts,
+    hasMore: response.has_more,
+    nextCursor: response.next_cursor,
+  };
+}
+
+/**
+ * 게시 목록 조회 (태그·정렬·페이지별로 캐시 분리 + TTL 만료로 Notion 삭제 반영)
+ */
+export async function getPublishedPosts(
+  params: GetPublishedPostsParams = {}
+): Promise<GetPublishedPostsResponse> {
+  const pageSize = params.pageSize ?? 2;
+  const tagKey = params.tag ?? '';
+  const sortKey = params.sort ?? '';
+  const cursorKey = params.startCursor ?? '';
+
+  const run = unstable_cache(
+    async () =>
+      fetchPublishedPostsFromNotion({
+        tag: params.tag,
+        sort: params.sort,
+        pageSize,
+        startCursor: params.startCursor,
+      }),
+    ['posts', tagKey, sortKey, String(pageSize), cursorKey],
+    {
+      tags: [BLOG_POSTS_CACHE_TAG],
+      revalidate: BLOG_REVALIDATE_SECONDS,
+    }
+  );
+
+  return run();
+}
+
+/** 빌드 시 등 전체 Published 게시물 순회 (generateStaticParams용) */
+export async function getAllPublishedPosts(): Promise<Post[]> {
+  const aggregated: Post[] = [];
+  let startCursor: string | undefined;
+
+  for (;;) {
+    const { posts, hasMore, nextCursor } = await getPublishedPosts({
+      pageSize: 100,
+      startCursor,
     });
-
-    const posts = response.results
-      .filter((page): page is PageObjectResponse => 'properties' in page)
-      .map(getPostMetadata);
-    // .map((page) => {
-    //   return getPostMetadata(page);
-    // });
-    console.log('posts: ', posts);
-
-    return {
-      posts,
-      hasMore: response.has_more,
-      nextCursor: response.next_cursor,
-    };
-  },
-  ['posts'],
-  {
-    tags: ['posts'],
+    aggregated.push(...posts);
+    if (!hasMore || nextCursor == null) break;
+    startCursor = nextCursor;
   }
-);
+
+  return aggregated;
+}
 
 export interface CreatePostParams {
   title: string;
