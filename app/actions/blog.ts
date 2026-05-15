@@ -1,9 +1,11 @@
 'use server';
 
 import { createPost } from '@/lib/notion';
-import { revalidatePath, revalidateTag } from 'next/cache';
-import { redirect } from 'next/navigation';
+import { revalidateTag } from 'next/cache';
+// import { revalidatePath, revalidateTag } from 'next/cache';
+// import { redirect } from 'next/navigation';
 import { z } from 'zod';
+import { getPublishedPosts } from '@/lib/notion';
 
 const postSchema = z.object({
   title: z.string().min(1, { message: '제목을 입력해주세요.' }),
@@ -68,4 +70,14 @@ export async function createPostAction(previousState: PostFormState, formData: F
   }
   // revalidatePath('/');
   // redirect('/');
+}
+
+export async function getPosts(
+  tag?: string,
+  sort?: string,
+  startCursor?: string,
+  pageSize?: number
+) {
+  const posts = await getPublishedPosts({ tag, sort, startCursor, pageSize });
+  return posts;
 }

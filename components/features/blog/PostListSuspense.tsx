@@ -8,6 +8,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { use, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { getPosts } from '@/app/actions/blog';
 
 interface PostListProps {
   postsPromise: Promise<GetPublishedPostsResponse>;
@@ -19,6 +20,7 @@ export default function PostList({ postsPromise }: PostListProps) {
   const tag = searchParams.get('tag');
   const sort = searchParams.get('sort');
 
+  // 1) 클라이언트 컴포넌트에서 공식적으로 서버 데이터 가져오는 방법(route api 이용)
   const fetchPosts = async ({ pageParam }: { pageParam: string | undefined }) => {
     const params = new URLSearchParams();
     if (tag) params.set('tag', tag);
@@ -31,6 +33,12 @@ export default function PostList({ postsPromise }: PostListProps) {
     }
     return response.json();
   };
+
+  // 2) 서버 액션에서 데이터를 가져오는 비공식적 방법
+  // const fetchPosts = async ({ pageParam }: { pageParam: string | undefined }) => {
+  //   const response = await getPosts(tag || undefined, sort || undefined, pageParam || undefined, 2);
+  //   return response;
+  // };
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
     queryKey: ['posts', tag, sort],
