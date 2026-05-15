@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { PostCard } from '@/components/features/blog/PostCard';
-import { Button } from '@/components/ui/button';
+import { Loader2 } from 'lucide-react';
 import { GetPublishedPostsResponse } from '@/lib/notion';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
@@ -54,8 +54,10 @@ export default function PostList({ postsPromise }: PostListProps) {
   });
 
   useEffect(() => {
-    console.log('inView: ', inView);
-  }, [inView]);
+    if (hasNextPage && !isFetchingNextPage && inView) {
+      fetchNextPage();
+    }
+  }, [inView, fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   const allPosts = data?.pages.flatMap((page) => page.posts) ?? [];
 
@@ -69,7 +71,13 @@ export default function PostList({ postsPromise }: PostListProps) {
         ))}
       </div>
 
-      <div ref={ref} className="h-10 bg-red-500"></div>
+      {hasNextPage && !isFetchingNextPage && <div ref={ref} className="h-10" />}
+      {isFetchingNextPage && (
+        <div className="flex items-center justify-center gap-2 py-4">
+          <Loader2 className="text-muted-foreground h-4 w-4 animate-spin" />
+          <span className="text-muted-foreground text-sm">로딩중...</span>
+        </div>
+      )}
 
       {/* {hasNextPage && (
         <div>
