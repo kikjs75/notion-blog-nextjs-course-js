@@ -3,56 +3,57 @@
 import Link from 'next/link';
 import { PostCard } from '@/components/features/blog/PostCard';
 import { Button } from '@/components/ui/button';
+import { GetPublishedPostsResponse } from '@/lib/notion';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
-import PostListSkeleton from '@/components/features/blog/PostListSkeleton';
-import type { GetPublishedPostsResponse } from '@/lib/notion';
-import { useState } from 'react';
+import { use } from 'react';
 
-async function fetchPosts({
-  pageParam,
-  tag,
-  sort,
-  pageSize,
-}: {
-  pageParam: string | undefined;
-  tag: string | undefined;
-  sort: string | undefined;
-  pageSize: number;
-}): Promise<GetPublishedPostsResponse> {
-  const params = new URLSearchParams();
-  if (tag) params.set('tag', tag);
-  if (sort) params.set('sort', sort);
-  if (pageParam) params.set('startCursor', pageParam);
-  params.set('pageSize', String(pageSize));
-
-  const res = await fetch(`/api/posts?${params.toString()}`);
-  return res.json();
+interface PostListProps {
+  postsPromise: Promise<GetPublishedPostsResponse>;
 }
 
-export default function PostList() {
-  const PAGE_SIZE = 2;
+export default function PostList({ postsPromise }: PostListProps) {
+  const initialData = use(postsPromise);
   const searchParams = useSearchParams();
-  const tag = searchParams.get('tag') ?? undefined;
-  const sort = searchParams.get('sort') ?? undefined;
+  const tag = searchParams.get('tag');
+  const sort = searchParams.get('sort');
 
-  const [pageSize, setPageSize] = useState(5);
+  const fetchPosts = async ({ pageParam }: { pageParam: string | undefined }) => {
+    const params = new URLSearchParams();
+    if (tag) params.set('tag', tag);
+    if (sort) params.set('sort', sort);
+    if (pageParam) params.set('startCursor', pageParam);
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } = useInfiniteQuery({
-    queryKey: ['posts', { tag, sort, pageSize }],
-    queryFn: ({ pageParam }) => fetchPosts({ pageParam, tag, sort, pageSize: Number(PAGE_SIZE) }),
+    const response = await fetch(`/api/posts?${params.toString()}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch posts');
+    }
+    return response.json();
+  };
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
+    queryKey: ['posts', tag, sort],
+    queryFn: fetchPosts,
+    initialPageParam: undefined,
     getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
-    initialPageParam: undefined as string | undefined,
+    initialData: {
+      pages: [initialData],
+      pageParams: [undefined],
+    },
   });
 
-  if (isPending) return <PostListSkeleton />;
+  const handleLoadMore = () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  };
 
-  const posts = data?.pages.flatMap((page) => page.posts) ?? [];
+  const allPosts = data?.pages.flatMap((page) => page.posts) ?? [];
 
   return (
     <div className="space-y-6">
       <div className="grid gap-4">
-        {posts.map((post, index) => (
+        {allPosts.map((post, index) => (
           <Link href={`/blog/${post.slug}`} key={post.id}>
             <PostCard post={post} priority={index === 0} />
           </Link>
@@ -64,10 +65,10 @@ export default function PostList() {
             variant="outline"
             size="lg"
             className="w-full"
-            onClick={() => fetchNextPage()}
+            onClick={handleLoadMore}
             disabled={isFetchingNextPage}
           >
-            {isFetchingNextPage ? '불러오는 중...' : '더보기'}
+            {isFetchingNextPage ? '로딩중...' : '더보기'}
           </Button>
         </div>
       )}

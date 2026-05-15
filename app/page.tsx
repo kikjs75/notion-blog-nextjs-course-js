@@ -2,7 +2,7 @@
 import TagSectionClient from './_components/TagSection.client';
 import ProfileSection from '@/app/_components/ProfileSection';
 import ContactSection from '@/app/_components/ContactSection';
-import { getTags } from '@/lib/notion';
+import { getTags, getPublishedPosts } from '@/lib/notion';
 import HeaderSection from './_components/HeaderSection';
 // import PostList from '@/components/features/blog/PostList';
 import PostListSuspense from '@/components/features/blog/PostListSuspense';
@@ -15,10 +15,12 @@ interface HomeProps {
 }
 
 export default async function Home({ searchParams }: HomeProps) {
-  const { tag } = await searchParams;
+  const { tag, sort } = await searchParams;
   const selectedTag = tag || '전체';
+  const selectedSort = sort === 'oldest' ? 'oldest' : 'latest';
 
   const tags = getTags();
+  const postsPromise = getPublishedPosts({ tag: selectedTag, sort: selectedSort });
 
   return (
     <div className="container py-8">
@@ -38,7 +40,7 @@ export default async function Home({ searchParams }: HomeProps) {
           {/* 블로그 카드 그리드 */}
           {/* <PostList posts={posts} /> */}
           <Suspense fallback={<PostListSkeleton />}>
-            <PostListSuspense />
+            <PostListSuspense postsPromise={postsPromise} />
           </Suspense>
         </div>
         {/* 우측 사이드바 */}
