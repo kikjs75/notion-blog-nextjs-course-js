@@ -6,7 +6,8 @@ import { Button } from '@/components/ui/button';
 import { GetPublishedPostsResponse } from '@/lib/notion';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
-import { use } from 'react';
+import { use, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 interface PostListProps {
   postsPromise: Promise<GetPublishedPostsResponse>;
@@ -48,6 +49,14 @@ export default function PostList({ postsPromise }: PostListProps) {
     }
   };
 
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+
+  useEffect(() => {
+    console.log('inView: ', inView);
+  }, [inView]);
+
   const allPosts = data?.pages.flatMap((page) => page.posts) ?? [];
 
   return (
@@ -59,7 +68,10 @@ export default function PostList({ postsPromise }: PostListProps) {
           </Link>
         ))}
       </div>
-      {hasNextPage && (
+
+      <div ref={ref} className="h-10 bg-red-500"></div>
+
+      {/* {hasNextPage && (
         <div>
           <Button
             variant="outline"
@@ -71,7 +83,7 @@ export default function PostList({ postsPromise }: PostListProps) {
             {isFetchingNextPage ? '로딩중...' : '더보기'}
           </Button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
