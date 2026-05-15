@@ -94,7 +94,7 @@ export const getPostBySlug = async (
   slug: string
 ): Promise<{
   markdown: string;
-  post: Post;
+  post: Post | null; // 한글 주석: slug에 해당하는 글이 없으면 null 반환
 }> => {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID!,
@@ -115,6 +115,13 @@ export const getPostBySlug = async (
       ],
     },
   });
+
+  // if (!response.results[0]) {
+  //   return {
+  //     markdown: '',
+  //     post: null,
+  //   };
+  // }
 
   const mBlocks = await n2m.pageToMarkdown(response.results[0].id);
   const { parent } = n2m.toMarkdownString(mBlocks);
