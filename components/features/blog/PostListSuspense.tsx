@@ -8,7 +8,6 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { use, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { getPosts } from '@/app/actions/blog';
 
 interface PostListProps {
   postsPromise: Promise<GetPublishedPostsResponse>;
