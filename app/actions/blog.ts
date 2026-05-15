@@ -1,7 +1,7 @@
 'use server';
 
 import { createPost } from '@/lib/notion';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
@@ -25,6 +25,7 @@ export interface PostFormState {
     content?: string[];
   };
   formData?: PostFormData;
+  success?: boolean;
 }
 
 export async function createPostAction(previousState: PostFormState, formData: FormData) {
@@ -54,12 +55,17 @@ export async function createPostAction(previousState: PostFormState, formData: F
   try {
     const { title, tag, content } = validatedFields.data;
     await createPost({ title: title, tag: tag, content: content });
+    revalidateTag('posts');
+    return {
+      message: '블로그 포스트가 성공적으로 생성되었습니다.',
+      success: true,
+    };
   } catch (err) {
     return {
       message: '블로그 포스트 생성에 실패했습니다.',
       formData: rawFormData,
     };
   }
-  revalidatePath('/');
-  redirect('/');
+  // revalidatePath('/');
+  // redirect('/');
 }

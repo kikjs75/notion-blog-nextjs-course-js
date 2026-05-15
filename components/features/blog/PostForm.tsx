@@ -9,6 +9,9 @@ import { Loader2 } from 'lucide-react';
 import { useActionState } from 'react';
 import { createPostAction } from '@/app/actions/blog';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function PostForm() {
   const [state, formAction, isPending] = useActionState(createPostAction, {
@@ -20,6 +23,16 @@ export default function PostForm() {
       content: '',
     },
   });
+
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state?.success) {
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      router.push('/');
+    }
+  }, [state, queryClient, router]);
 
   return (
     <form action={formAction}>

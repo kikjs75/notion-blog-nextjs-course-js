@@ -188,12 +188,17 @@ export const getPublishedPosts = unstable_cache(
     // .map((page) => {
     //   return getPostMetadata(page);
     // });
+    console.log('posts: ', posts);
 
     return {
       posts,
       hasMore: response.has_more,
       nextCursor: response.next_cursor,
     };
+  },
+  ['posts'],
+  {
+    tags: ['posts'],
   }
 );
 
