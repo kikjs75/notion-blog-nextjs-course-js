@@ -12,6 +12,7 @@ export interface Post {
   tags?: string[];
   author?: string;
   date?: string;
-  modifiedData: string;
+  /** 마지막 수정 시각 (ISO 문자열, Notion `last_edited_time`) */
+  modifiedDate: string;
   slug: string;
 }
