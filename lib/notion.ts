@@ -192,7 +192,6 @@ async function fetchPublishedPostsFromNotion({
   pageSize = 2,
   startCursor,
 }: GetPublishedPostsParams): Promise<GetPublishedPostsResponse> {
-  console.log('getPublishedPosts: ', tag, sort, pageSize, startCursor);
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID!,
     filter: {
@@ -232,7 +231,6 @@ async function fetchPublishedPostsFromNotion({
   const posts = response.results
     .filter((page): page is PageObjectResponse => 'properties' in page)
     .map(getPostMetadata);
-  console.log('posts: ', posts);
 
   return {
     posts,
